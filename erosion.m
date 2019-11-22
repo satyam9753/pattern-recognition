@@ -3,8 +3,10 @@ clear all;
 close all;
 
 I= imread('erosion_sample.png');
-[x,y,p]=size(I);
-J=zeros(x,y);
+[x,y,p]=size(I);  %get size of image
+J=zeros(x,y);     
+
+%giving all the pixels of the image binary values (alternative to im2bw)
 for i=1:1:x
     for j=1:1:y
         if(I(i,j)>128)
@@ -14,6 +16,7 @@ for i=1:1:x
         end
     end
 end
+
 L=J        
 J= ~J;  %for dilation add this line
 
@@ -34,6 +37,8 @@ for i=2:1:m-1
     end     
 end
 boundary = (~F) - L;
-imshow(boundary);
+figure(1),imshow(I);
+figure(2),imshow(~F);           %dilation
+figure(3),imshow(boundary);     %boundary of the image
 %imshow(F);
 %imshow(~F); for dilation
